@@ -1,20 +1,23 @@
-import { NavLink,withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import { useCart } from "../../Context/CartProvider";
 import "./Navigation.css";
 
 const Navigation = () => {
+  const { cart } = useCart();
   return (
     <header className="mainNavigation">
       <nav>
         <ul>
           <li>
-            <NavLink to="/" activeClassName="activeLink" exact >
+            <NavLink to="/" activeClassName="activeLink" exact>
               home
             </NavLink>
           </li>
-          <li>
+          <li className="cartLink">
             <NavLink to="/cart" activeClassName="activeLink">
               cart
             </NavLink>
+            <span> {cart.length}</span>
           </li>
         </ul>
         <div>Shopping</div>
@@ -23,4 +26,4 @@ const Navigation = () => {
   );
 };
 
-export default  withRouter(Navigation);
+export default withRouter(Navigation);
