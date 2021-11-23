@@ -5,7 +5,6 @@ import checkInCart from "../utils/checkInCart";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-
 const HomePage = () => {
   const { cart } = useCart();
   const dispatch = useCartActions();
@@ -30,7 +29,13 @@ const HomePage = () => {
                     onClick={() => addProductHandler(product)}
                     className="btn primary"
                   >
-                    {checkInCart(cart, product) ? <Link to="/cart" className="btn primary">In Cart</Link> : " Add to Cart"}
+                    {checkInCart(cart, product) ? (
+                      <Link to="/cart" className="btn primary">
+                        In Cart
+                      </Link>
+                    ) : (
+                      " Add to Cart"
+                    )}
                   </button>
                 </div>
               </section>
