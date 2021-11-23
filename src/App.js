@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <CartProvider>
-        <ToastContainer theme="colored"  />
+        <ToastContainer theme="colored" limit={1}/>
         <Switch>
           {routes.map((route) => (
             <Route {...route} />
