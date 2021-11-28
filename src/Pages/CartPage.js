@@ -70,7 +70,7 @@ const CartSummary = ({ total, cart }) => {
         <p>net price</p>
         <p>${total}</p>
       </div>
-      <Link to="/checkout">
+      <Link to="/signup?redirect=checkout">
         <button
           className="btn primary"
           style={{ margin: "20px 0", width: "100%" }}
