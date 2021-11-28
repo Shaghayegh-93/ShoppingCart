@@ -4,9 +4,10 @@ import * as Yup from "yup";
 import "./SignupForm.css";
 import { Link, withRouter } from "react-router-dom";
 import signupUser from "../../services/signupService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useAuthActions } from "../../Context/AuthProvider";
+import { useAuth, useAuthActions } from "../../Context/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 const initialValues = {
   name: "",
   email: "",
@@ -36,8 +37,14 @@ const validationSchema = Yup.object({
 });
 
 const SignupForm = ({ history }) => {
+  const query = useQuery();
+  const redirect = query.get("redirect") || "/";
   const setAuth = useAuthActions();
+  const auth = useAuth();
   const [error, setError] = useState(null);
+  useEffect(() => {
+    if (auth) history.push(redirect);
+  }, [auth, redirect]);
   const onSubmit = async (values) => {
     const { name, password, email, phoneNumber } = values;
     const userData = {
@@ -51,7 +58,7 @@ const SignupForm = ({ history }) => {
       setAuth(data);
       // localStorage.setItem("authState", JSON.stringify(data));
       setError(null);
-      history.push("/");
+      history.push(redirect);
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -99,8 +106,8 @@ const SignupForm = ({ history }) => {
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <Link to="/login">
-          <p style={{ marginTop: "15px" }}>Already login?</p>
+        <Link to={`/login?redirect=${redirect}`}>
+          <p style={{ marginTop: "15px" }}>Sign in</p>
         </Link>
       </form>
     </div>
