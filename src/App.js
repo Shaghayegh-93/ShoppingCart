@@ -4,18 +4,21 @@ import routes from "./routes";
 import CartProvider from "./Context/CartProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthProvider from "./Context/AuthProvider";
 
 function App() {
   return (
     <Router>
-      <CartProvider>
-        <ToastContainer theme="colored" limit={1}/>
-        <Switch>
-          {routes.map((route) => (
-            <Route {...route} />
-          ))}
-        </Switch>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <ToastContainer theme="colored" />
+          <Switch>
+            {routes.map((route) => (
+              <Route {...route} />
+            ))}
+          </Switch>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   );
 }
