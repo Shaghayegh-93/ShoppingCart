@@ -30,6 +30,8 @@
   display: block;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .mainNavigation a:hover,
@@ -39,6 +41,9 @@
 }
 .cartLink {
   position: relative;
+}
+.cartIcon {
+  font-size: 30px;
 }
 .mainNavigation span {
   display: flex;
@@ -50,7 +55,16 @@
   background-color: #6d28d9;
   color: #fff;
   position: absolute;
-  right: -9px;
-  top: -9px;
+  right: 3px;
+  top: -3px;
   font-size: 14px;
+}
+.logo {
+  margin-top: -10px;
+}
+
+.logo h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #6d28d9;
 }
